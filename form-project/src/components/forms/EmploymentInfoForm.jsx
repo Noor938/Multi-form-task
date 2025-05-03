@@ -5,16 +5,23 @@ import { CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { updatePersonalInfo } from "@/redux/formSlice";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { updateEmploymentInfo } from "@/redux/formSlice";
 
-const FirstStep= ({ onNext }) => {
+const EmploymentInfoForm = ({ onNext, onBack }) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.form);
 
   const form = useForm({
-    defaultValues: formState.personalInfo,
+    defaultValues: formState.employmentInfo,
     onSubmit: async ({ value }) => {
-      dispatch(updatePersonalInfo(value));
+      dispatch(updateEmploymentInfo(value));
       onNext();
     },
   });
@@ -26,60 +33,27 @@ const FirstStep= ({ onNext }) => {
         form.handleSubmit();
       }}
     >
-      <CardContent className="space-y-6 pt-4">
+      <CardContent className="space-y-4 pt-4">
+        {/* Company */}
         <div className="space-y-1">
-          <Label htmlFor="firstName" className="text-2xl">
-            First Name
+          <Label htmlFor="company" className="text-2xl">
+            Company
           </Label>
           <form.Field
-            name="firstName"
+            name="company"
             validators={{
               onBlur: ({ value }) =>
-                !value ? "First name is required" : undefined,
+                !value ? "Company name is required" : undefined,
             }}
           >
             {(field) => (
               <>
                 <Input
-                  id="firstName"
+                  id="company"
+                  placeholder="Enter your company name"
                   value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
-                  placeholder="Enter your first name"
-                  className={`!py-5 ${
-                    field.state.meta.errors ? "border-red-500" : ""
-                  }`}
-                />
-                {field.state.meta.errors && (
-                  <p className="text-sm text-red-500 mt-1">
-                    {field.state.meta.errors}
-                  </p>
-                )}
-              </>
-            )}
-          </form.Field>
-        </div>
-
-        {/* Last Name */}
-        <div className="space-y-1">
-          <Label htmlFor="lastName" className="text-2xl">
-            Last Name
-          </Label>
-          <form.Field
-            name="lastName"
-            validators={{
-              onBlur: ({ value }) =>
-                !value ? "Last name is required" : undefined,
-            }}
-          >
-            {(field) => (
-              <>
-                <Input
-                  id="lastName"
-                  value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
-                  onBlur={field.handleBlur}
-                  placeholder="Enter your last name"
                   className={`${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
@@ -94,36 +68,75 @@ const FirstStep= ({ onNext }) => {
           </form.Field>
         </div>
 
-        {/* Email */}
+        {/* Position */}
         <div className="space-y-1">
-          <Label htmlFor="email" className="text-2xl">
-            Email
+          <Label htmlFor="position" className="text-2xl">
+            Position
           </Label>
           <form.Field
-            name="email"
+            name="position"
             validators={{
-              onBlur: ({ value }) => {
-                if (!value) return "Email is required";
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return !emailRegex.test(value)
-                  ? "Enter a valid email address"
-                  : undefined;
-              },
+              onBlur: ({ value }) =>
+                !value ? "Position is required" : undefined,
             }}
           >
             {(field) => (
               <>
                 <Input
-                  id="email"
-                  type="email"
+                  id="position"
+                  placeholder="Enter your position"
                   value={field.state.value}
-                  onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
-                  placeholder="Enter your email"
+                  onChange={(e) => field.handleChange(e.target.value)}
                   className={`${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
                 />
+                {field.state.meta.errors && (
+                  <p className="text-sm text-red-500 mt-1">
+                    {field.state.meta.errors}
+                  </p>
+                )}
+              </>
+            )}
+          </form.Field>
+        </div>
+
+        {/* Years of Experience */}
+        <div className="space-y-1">
+          <Label htmlFor="yearsOfExperience" className="text-2xl">
+            Years of Experience
+          </Label>
+          <form.Field
+            name="yearsOfExperience"
+            validators={{
+              onBlur: ({ value }) =>
+                !value ? "Years of experience is required" : undefined,
+            }}
+          >
+            {(field) => (
+              <>
+                <Select
+                  onValueChange={(value) => field.handleChange(value)}
+                  value={field.state.value}
+                  onBlur={field.handleBlur}
+                >
+                  <SelectTrigger
+                    id="yearsOfExperience"
+                    className={`${
+                      field.state.meta.errors ? "border-red-500" : ""
+                    }`}
+                  >
+                    <SelectValue placeholder="Select years of experience" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="0-1">0-1 years</SelectItem>
+                    <SelectItem value="1-3">1-3 years</SelectItem>
+                    <SelectItem value="3-5">3-5 years</SelectItem>
+                    <SelectItem value="5-10">5-10 years</SelectItem>
+                    <SelectItem value="10+">10+ years</SelectItem>
+                  </SelectContent>
+                </Select>
                 {field.state.meta.errors && (
                   <p className="text-sm text-red-500 mt-1">
                     {field.state.meta.errors}
@@ -136,7 +149,10 @@ const FirstStep= ({ onNext }) => {
       </CardContent>
 
       <CardFooter className="flex justify-end gap-2">
-        <Button type="submit" className="mt-4" disabled={!form.state.isValid}>
+        <Button type="button" variant="outline" onClick={onBack}>
+          Back
+        </Button>
+        <Button type="submit" disabled={!form.state.isValid}>
           Next
         </Button>
       </CardFooter>
@@ -144,4 +160,4 @@ const FirstStep= ({ onNext }) => {
   );
 };
 
-export default FirstStep;
+export default EmploymentInfoForm;

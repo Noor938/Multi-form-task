@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { updateAdditionalInfo } from "@/redux/formSlice";
 
-const ThirdStep = ({ onBack, onSubmit }) => {
+const AdditionalInfoForm = ({ onBack, onSubmit }) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.form);
 
@@ -115,4 +115,4 @@ const ThirdStep = ({ onBack, onSubmit }) => {
   );
 };
 
-export default ThirdStep;
+export default AdditionalInfoForm;

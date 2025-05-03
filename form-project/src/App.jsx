@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { Button } from "@/components/ui/button";
-import FormModal from "./components/FormModal";
+import FormModal from "./FormModal";
 
 const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +17,7 @@ const App = () => {
 
           <div className="flex justify-center">
             <Button size="lg" className="text-xl" onClick={() => setIsModalOpen(true)}>
-              Open Form
+              Open Modal
             </Button>
           </div>
         </div>
