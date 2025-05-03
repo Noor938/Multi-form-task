@@ -11,23 +11,21 @@ import PersonalInfo from "./forms/PersonalInfo";
 import EmploymentInfo from "./forms/EmploymentInfo";
 import AdditionalInfo from "./forms/AdditionalInfo";
 
-
 const FormModal = ({ isOpen, onOpenChange }) => {
   const [step, setStep] = useState(1);
 
   const handleNext = () => {
-    setStep((prev) => Math.min(prev + 1, 3)); 
+    setStep((prev) => Math.min(prev + 1, 3));
   };
 
   const handleBack = () => {
-    setStep((prev) => Math.max(prev - 1, 1)); 
+    setStep((prev) => Math.max(prev - 1, 1));
   };
 
   const handleSubmit = () => {
     console.log("Form submitted!");
-    setStep(1)
-    onOpenChange(false); 
-    
+    setStep(1);
+    onOpenChange(false);
   };
 
   const renderStep = () => {
