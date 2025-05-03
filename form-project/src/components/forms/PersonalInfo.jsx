@@ -80,7 +80,7 @@ const PersonalInfo = ({ onNext }) => {
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
                   placeholder="Enter your last name"
-                  className={`${
+                  className={`!py-5 ${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
                 />
@@ -120,7 +120,7 @@ const PersonalInfo = ({ onNext }) => {
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
                   placeholder="Enter your email"
-                  className={`${
+                  className={`!py-5 ${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
                 />

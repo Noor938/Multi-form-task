@@ -54,7 +54,7 @@ const EmploymentInfo = ({ onNext, onBack }) => {
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
-                  className={`${
+                  className={`!py-5 ${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
                 />
@@ -88,7 +88,7 @@ const EmploymentInfo = ({ onNext, onBack }) => {
                   value={field.state.value}
                   onBlur={field.handleBlur}
                   onChange={(e) => field.handleChange(e.target.value)}
-                  className={`${
+                  className={`!py-5 ${
                     field.state.meta.errors ? "border-red-500" : ""
                   }`}
                 />
@@ -123,7 +123,7 @@ const EmploymentInfo = ({ onNext, onBack }) => {
                 >
                   <SelectTrigger
                     id="yearsOfExperience"
-                    className={`${
+                    className={`!py-5 ${
                       field.state.meta.errors ? "border-red-500" : ""
                     }`}
                   >
