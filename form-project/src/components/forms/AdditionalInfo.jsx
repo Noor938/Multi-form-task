@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { updateAdditionalInfo } from "@/redux/formSlice";
+import { resetForm, updateAdditionalInfo } from "@/redux/formSlice";
 
 const AdditionalInfo = ({ onBack, onSubmit }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const AdditionalInfo = ({ onBack, onSubmit }) => {
         ...formState.employmentInfo,
         ...value,
       });
-      form.reset()
+      dispatch(resetForm());
       onSubmit();
     },
   });

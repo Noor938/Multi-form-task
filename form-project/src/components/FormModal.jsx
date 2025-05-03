@@ -25,6 +25,7 @@ const FormModal = ({ isOpen, onOpenChange }) => {
 
   const handleSubmit = () => {
     console.log("Form submitted!");
+    setStep(1)
     onOpenChange(false); 
     
   };
