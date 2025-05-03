@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { Button } from "@/components/ui/button";
+import FormModal from "./components/FormModal";
 
 const App = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <Provider store={store}>
       <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
@@ -13,11 +16,13 @@ const App = () => {
           </div>
 
           <div className="flex justify-center">
-            <Button size="lg" className="text-xl bg-black text-white">
+            <Button size="lg" className="text-xl" onClick={() => setIsModalOpen(true)}>
               Open Form
             </Button>
           </div>
         </div>
+
+        <FormModal isOpen={isModalOpen} onOpenChange={setIsModalOpen} />
       </div>
     </Provider>
   );
