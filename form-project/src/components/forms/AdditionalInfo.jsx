@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { updateAdditionalInfo } from "@/redux/formSlice";
 
-const AdditionalInfoForm = ({ onBack, onSubmit }) => {
+const AdditionalInfo = ({ onBack, onSubmit }) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.form);
 
@@ -21,6 +21,7 @@ const AdditionalInfoForm = ({ onBack, onSubmit }) => {
         ...formState.employmentInfo,
         ...value,
       });
+      form.reset()
       onSubmit();
     },
   });
@@ -115,4 +116,4 @@ const AdditionalInfoForm = ({ onBack, onSubmit }) => {
   );
 };
 
-export default AdditionalInfoForm;
+export default AdditionalInfo;

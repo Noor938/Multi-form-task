@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 import { updateEmploymentInfo } from "@/redux/formSlice";
 
-const EmploymentInfoForm = ({ onNext, onBack }) => {
+const EmploymentInfo = ({ onNext, onBack }) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.form);
 
@@ -160,4 +160,4 @@ const EmploymentInfoForm = ({ onNext, onBack }) => {
   );
 };
 
-export default EmploymentInfoForm;
+export default EmploymentInfo;

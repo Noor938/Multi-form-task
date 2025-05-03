@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { updatePersonalInfo } from "@/redux/formSlice";
 
-const PersonalInfoForm = ({ onNext }) => {
+const PersonalInfo = ({ onNext }) => {
   const dispatch = useDispatch();
   const formState = useSelector((state) => state.form);
 
@@ -144,4 +144,4 @@ const PersonalInfoForm = ({ onNext }) => {
   );
 };
 
-export default PersonalInfoForm;
+export default PersonalInfo;

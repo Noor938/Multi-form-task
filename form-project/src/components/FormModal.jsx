@@ -7,10 +7,10 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
+import PersonalInfo from "./forms/PersonalInfo";
+import EmploymentInfo from "./forms/EmploymentInfo";
+import AdditionalInfo from "./forms/AdditionalInfo";
 
-import PersonalInfoForm from "@/components/forms/PersonalInfoForm";
-import EmploymentInfoForm from "@/components/forms/EmploymentInfoForm";
-import AdditionalInfoForm from "@/components/forms/AdditionalInfoForm";
 
 const FormModal = ({ isOpen, onOpenChange }) => {
   const [step, setStep] = useState(1);
@@ -26,16 +26,17 @@ const FormModal = ({ isOpen, onOpenChange }) => {
   const handleSubmit = () => {
     console.log("Form submitted!");
     onOpenChange(false); 
+    
   };
 
   const renderStep = () => {
     switch (step) {
       case 1:
-        return <PersonalInfoForm onNext={handleNext} />;
+        return <PersonalInfo onNext={handleNext} />;
       case 2:
-        return <EmploymentInfoForm onNext={handleNext} onBack={handleBack} />;
+        return <EmploymentInfo onNext={handleNext} onBack={handleBack} />;
       case 3:
-        return <AdditionalInfoForm onBack={handleBack} onSubmit={handleSubmit} />;
+        return <AdditionalInfo onBack={handleBack} onSubmit={handleSubmit} />;
       default:
         return null;
     }
